@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <changeSet id='02' author='Lakshitha de Silva' context='integration OR pp OR live'>
+        <!-- Standard providers -->
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.admin.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.admin.DefaultAdminProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.user.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.user.DefaultUserProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.lockout.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.lockout.DefaultLockOutProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.group.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.group.DefaultGroupProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.vcard.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.vcard.DefaultVCardProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.securityAudit.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.security.DefaultSecurityAuditProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='provider.auth.className'/>
+            <column name='propValue' value='gamesys.openfire.auth.ChatTokenHybridAuthProvider'/>
+        </insert>
+
+        <!-- Hybrid auth provider configuration  -->
+        <insert tableName='ofProperty'>
+            <column name='name'      value='hybridAuthProvider.primaryProvider.className'/>
+            <column name='propValue' value='gamesys.openfire.auth.ChatTokenAuthProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='hybridAuthProvider.secondaryProvider.className'/>
+            <column name='propValue' value='gamesys.openfire.auth.JwtAuthProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='hybridAuthProvider.tertiaryProvider.className'/>
+            <column name='propValue' value='org.jivesoftware.openfire.auth.DefaultAuthProvider'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='hybridAuthProvider.tertiaryProvider.overrideList'/>
+            <column name='propValue' value='admin'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='admin.authorizedJIDs'/>
+            <column name='propValue' value='admin@chat'/>
+        </insert>
+
+        <!-- XMPP server configuration  -->
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.domain'/>
+            <column name='propValue' value='chat'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.client.idle'/>
+            <column name='propValue' value='180000'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.muc.history.reload.limit'/>
+            <column name='propValue' value='1'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.httpbind.worker.threads'/>
+            <column name='propValue' value='64'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.socket.plain.port'/>
+            <column name='propValue' value='5526'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='httpbind.enabled'/>
+            <column name='propValue' value='true'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='httpbind.client.processing.threads'/>
+            <column name='propValue' value='400'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='sasl.mechs'/>
+            <column name='propValue' value='PLAIN'/>
+        </insert>
+
+        <!-- Disable unused features typically enabled by default  -->
+        <insert tableName='ofProperty'>
+            <column name='name'      value='register.inband'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='register.password'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='update.notify-admins'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='update.service-enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.socket.ssl.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.server.socket.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.component.socket.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.component.ssl.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.multiplex.socket.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.multiplex.ssl.active'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.proxy.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.pubsub.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.privateStorageEnabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='xmpp.offline.type'/>
+            <column name='propValue' value='drop'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='flash.crossdomain.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='plugins.upload.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='rss.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='httpbind.port.secure'/>
+            <column name='propValue' value='0'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='adminConsole.securePort'/>
+            <column name='propValue' value='0'/>
+        </insert>
+
+        <!-- Environment and venture agnostic Gamesys properties  -->
+        <insert tableName='ofProperty'>
+            <column name='name'      value='auth.secret.file'/>
+            <column name='propValue' value='/opt/openfire/conf/secret'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='hazelcast.config.xml.filename'/>
+            <column name='propValue' value='cluster.xml'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='recent.chatter.time.limit'/>
+            <column name='propValue' value='4'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='media.game.service.url'/>
+            <column name='propValue' value='http://api/media-api'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='community.server.url'/>
+            <column name='propValue' value='http://community:8080/community'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='muted.members.url'/>
+            <column name='propValue' value='http://community:8080/community/mutes/active'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='mpc.server'/>
+            <column name='propValue' value='http://member-profile-client:8080/mpc'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='gamesys.reporting.snapshot.interval'/>
+            <column name='propValue' value='100'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='gamesys.reporting.omnidata.enabled'/>
+            <column name='propValue' value='false'/>
+        </insert>
+
+        <!-- Cleanup unused data  -->
+        <delete tableName='ofMucService'>
+            <where>subdomain='conference'</where>
+        </delete>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,453 @@
+{
+  "area": "Unicorn",
+  "service": "unicorn-openfire",
+  "status": "active",
+  "categories": [
+    {
+      "category": "Framework & Language",
+      "questions": [
+        {
+          "question": "Are you using any tool/framework/process to automatically update library versions?",
+          "answer": "No"
+        },
+        {
+          "question": "Using Redhat build of OpenJDK?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Using latest Java LTS version (11)?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Are you using a package manager?",
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "APIs",
+      "questions": [
+        {
+          "question": "All provided APIs expose API contracts?",
+          "answer": "N/A"
+        },
+        {
+          "question": "API contracts are written in OpenAPI?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Consumes latest available version of dependent APIs?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Does your service/application's build process guarantee the accuracy of the contract it exposes?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Does your service/application's build process prevent breaking changes being made to the same major contract version?",
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "Maintainability",
+      "questions": [
+        {
+          "question": "Is your application free of dead (deprecated & unused) code/APIs?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Datasource",
+      "questions": [
+        {
+          "question": "Has its own private 'not-shared' datastore?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Build & Release",
+      "questions": [
+        {
+          "question": "Automated build process?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Supports zero downtime release of code changes?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Support zero-downtime releasing for most datastore schema changes?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Supports automated deploy (excluding sign-off) to an environment (integration, staging, live)?",
+          "answer": "Yes",
+          "comment": "integration, staging only"
+        }
+      ]
+    },
+    {
+      "category": "Containers",
+      "questions": [
+        {
+          "question": "Containerised in Docker?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Deployed to k8s?",
+          "answer": "No"
+        }
+      ]
+    },
+    {
+      "category": "Configuration",
+      "questions": [
+        {
+          "question": "Is Vi4w compliant? Requires no work to launch new ventures?",
+          "answer": "No"
+        },
+        {
+          "question": "Is all operator config externalised from the service code?",
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "Clustering",
+      "questions": [
+        {
+          "question": "Application has necessary redundancy to ensure it's not a single point of failure?",
+          "answer": "No",
+          "comment": "The application itself is clustered but the DB is not. DataOps are working on this - team is not involved"
+        }
+      ]
+    },
+    {
+      "category": "Data",
+      "questions": [
+        {
+          "question": "Do you have a documented and implemented data retention policies?",
+          "answer": "No"
+        }
+      ]
+    },
+    {
+      "category": "Testing",
+      "questions": [
+        {
+          "question": "Are you confident in releasing without any manual testing involved? *Exception for visual testing",
+          "answer": "No"
+        },
+        {
+          "question": "Do the automated tests run as part of CI process?",
+          "answer": "N/A",
+          "comment": "Excluding unit/integration tests (which are run in the CI process), we have no automated tests"
+        }
+      ]
+    },
+    {
+      "category": "Code Quality",
+      "questions": [
+        {
+          "question": "Does your pipeline enforce passing at least Gold Quality Gate in Sonarqube?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Does your codebase use linters?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Does your codebase use automatic code formatting?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Are you using commit hooks to enforce your standards?",
+          "answer": "No"
+        },
+        {
+          "question": "Are you using BDD or TDD?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Observability",
+      "questions": [
+        {
+          "question": "Is a healthcheck endpoint available?",
+          "answer": "No"
+        },
+        {
+          "question": "Can you introspect the running application to determine its version?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Monitoring",
+      "questions": [
+        {
+          "question": "Do you have APM, dashboards and alerts?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Deployment",
+      "questions": [
+        {
+          "question": "Are your deployments happening through Control Center?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Does it have Live Sync Back enabled?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Is the deployable compatible with Dynatrace?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Logging",
+      "questions": [
+        {
+          "question": "Logs published to Splunk?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Is log rotation properly implemented?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Security",
+      "questions": [
+        {
+          "question": "Do you perform security checks on your application (NexusIQ) and act upon them?",
+          "answer": "Yes"
+        },
+        {
+          "question": "Is it free of critical vulnerabilities in NexusIQ scan?",
+          "answer": "Yes"
+        }
+      ]
+    },
+    {
+      "category": "Front End Common",
+      "questions": [
+        {
+          "question": "Are all your cookies accounted for in our Cookie Policy?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you integrated with Dynatrace's Real-User Metrics (RUM)?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using the Dynatrace tracking naming conventions?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you have a mechanism to track user behaviour? (e.g. GA Events, Splunk logging, Dynatrace)",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you perform any user-facing performance testing on your application?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you tracking real-time performance metrics based on user sessions?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you have a performance budget that you comply with?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are your PostMessage contracts with external systems documented?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use the Gamesys Code guideline?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use the ES2020 standard for JavaScript projects?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use type checking?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using optimised images?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using optimised videos?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using minified bundles in production?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using bundle splitting?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use serve a bundle for evergreen browsers?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are your assets being cached?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you able use configuration from an external source?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using namespaced packages for your internal modules?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use the Gamesys supported browser list?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you have a development environment that immediately reacts to changes?",
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "Front End Excite",
+      "questions": [
+        {
+          "question": "Do you use a CSS framework or Design System?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Does your UI use the Gamesys component library based on Material UI?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use a modern industry standard state management solution?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use a modern industry standard solution for making requests?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you predominantly use React Hooks?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use a CSS-in-JS solution?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you have small modular single-purpose libraries?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use server-side rendering?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using Contentful?",
+          "answer": "N/A"
+        }
+      ]
+    },
+    {
+      "category": "Front End Engage",
+      "questions": [
+        {
+          "question": "Do you use a CSS framework or Design System?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Does your UI use the Gamesys component library based on Material UI?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you measure Google Core Web Vitals?",
+          "answer": "N/A"
+        }
+      ]
+    },{
+      "category": "Front End Games",
+      "questions": [
+        {
+          "question": "Are you using modern render engine (like pixi.js) and on latest version?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using atlases?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using web-fonts?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you using the SuperSlick folder structure?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you either responsive or bucketed?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Supporting both WebGL and Canvas",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you optimising for different pixel densities?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you automatically generate scales?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you NOT using masks",
+          "answer": "N/A"
+        },
+        {
+          "question": "Is amount of your WebGLRenderingContext limited?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Is your views implementation abstracted from rendering engine?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you handle audio context running, properly?",
+          "answer": "N/A"
+        },
+        {
+          "question": "Do you use cross browser friendly audio formats (.m4a, .mp3)",
+          "answer": "N/A"
+        },
+        {
+          "question": "Are you avoiding external runtime js dependencies",
+          "answer": "N/A"
+        },
+        {
+          "question": "Can artworkers see their changes in a hotswapping manner",
+          "answer": "N/A"
+        }
+      ]
+    }
+  ]
+}

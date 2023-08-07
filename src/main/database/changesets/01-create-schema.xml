@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <changeSet id='01' author='Lakshitha de Silva' context='integration OR pp OR live'>
+        <validCheckSum>8:82797b8dddd60943feacc168cab077f6</validCheckSum>
+
+        <!-- Create standard Openfire schema -->
+        <sqlFile path='../openfire_mysql.sql' relativeToChangelogFile='true' stripComments='true'/>
+
+        <!-- Gamesys alterations to Openfire tables -->
+        <addColumn tableName='ofUser'>
+            <column name='venture' type='varchar(100)'/>
+        </addColumn>
+
+        <!-- Add Gamesys tables and indexes -->
+        <createTable tableName='ofBroadcastMessages' remarks='Broadcast messages sent out by Media Game plugin'>
+            <column name='broadcastId' type='bigint(20)' autoIncrement='true'>
+                <constraints nullable='false' primaryKey='true'/>
+            </column>
+            <column name='sender' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='venture' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='room' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='message' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='logTime' type='varchar(15)'>
+                <constraints nullable='false'/>
+            </column>
+        </createTable>
+
+        <createTable tableName='ofMucEvent' remarks='Room join and leave event details'>
+            <column name='roomJID' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='userJID' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='eventType' type='text'>
+                <constraints nullable='false'/>
+            </column>
+            <column name='creationDate' type='datetime'>
+                <constraints nullable='false'/>
+            </column>
+        </createTable>
+
+        <createIndex indexName='ofMucEvent_time_idx' tableName='ofMucEvent' unique='false'>
+            <column name='creationDate'/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

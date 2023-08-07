@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <changeSet id='08' author='Lakshitha de Silva' context='(integration OR pp OR live) AND botemania'>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='gamesys.mediagame.jms.uri'/>
+            <column name='propValue' value='jms:queue:botemania.chat.room.media'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='gamesys.roommanagement.jms.uri'/>
+            <column name='propValue' value='jms:queue:botemania.chat.room'/>
+        </insert>
+        <insert tableName='ofProperty'>
+            <column name='name'      value='gamesys.messaging.jms.uri'/>
+            <column name='propValue' value='jms:queue:botemania.chat.notification'/>
+        </insert>
+
+        <insert tableName='ofMucService'>
+            <column name='serviceID' valueNumeric='1'/>
+            <column name='subdomain' value='botemania'/>
+            <column name='isHidden'  valueNumeric='0'/>
+        </insert>
+        <insert tableName='ofMucRoom'>
+            <column name='roomID'      valueNumeric='1'/>
+            <column name='serviceID'   valueNumeric='1'/>
+            <column name='name'        value='allatu'/>
+            <column name='naturalName' value='¡ALLÁ TÚ!'/>
+            <column name='description' value='¡ALLÁ TÚ!'/>
+            <column name='lockedDate'  value='000000000000000'/>
+            <column name='creationDate'     valueComputed='UNIX_TIMESTAMP()*1000'/>
+            <column name='modificationDate' valueComputed='UNIX_TIMESTAMP()*1000'/>
+            <column name='canChangeSubject' valueNumeric='0'/>
+            <column name='useReservedNick'  valueNumeric='0'/>
+            <column name='canChangeNick'    valueNumeric='0'/>
+            <column name='rolesToBroadcast' valueNumeric='7'/>
+            <column name='canDiscoverJID'   valueNumeric='1'/>
+            <column name='publicRoom'  valueNumeric='1'/>
+            <column name='moderated'   valueNumeric='1'/>
+            <column name='canRegister' valueNumeric='1'/>
+            <column name='logEnabled'  valueNumeric='1'/>
+            <column name='membersOnly' valueNumeric='0'/>
+            <column name='canInvite'   valueNumeric='0'/>
+            <column name='maxUsers'    valueNumeric='0'/>
+            <column name='allowpm'     valueNumeric='0'/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

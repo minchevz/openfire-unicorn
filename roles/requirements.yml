@@ -1,0 +1,9 @@
+---
+- src: git@github.gamesys.co.uk:PlayerServices/unicorn-k8s-deployment-playbook.git
+  scm: git
+  version: latest
+  name: deployment_k8s
+- src: git@github.gamesys.co.uk:PlayerServices/unicorn-update-consul-playbook.git
+  scm: git
+  version: main
+  name: update_consul

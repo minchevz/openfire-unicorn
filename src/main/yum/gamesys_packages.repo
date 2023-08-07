@@ -1,0 +1,5 @@
+[gamesys-packages]
+name=Gamesys Packages
+gpgcheck=0
+enabled=1
+baseurl=http://yum.gamesys.corp/gamesys_packages_el7

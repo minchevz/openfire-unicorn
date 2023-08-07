@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <include file='changesets/01-create-schema.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/02-populate-base-config-common.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/03-populate-base-config-integration.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/04-populate-base-config-pp.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/05-populate-base-config-live.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/06-populate-venture-config-jackpotjoy.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/07-populate-venture-config-virgingames.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/08-populate-venture-config-botemania.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/09-populate-venture-config-heart.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/10-populate-venture-config-sweden-vj.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/11-populate-venture-config-networkbingo.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/12-populate-venture-config-monopolycasinospain-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/13-turn-off-regulated-chat.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/14-update-communityserver-mediagame-urls.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/15-delete-mutedmembersurl-property.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/16-populate-venture-config-jackpotjoy-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/17-populate-venture-config-virgingames-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/18-populate-venture-config-botemania-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/19-populate-venture-config-heart-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/20-populate-venture-config-starspins-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/21-populate-venture-config-monopolycasino-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/22-add-rss-property-disabled.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/23-add-hazelcast-timeout-property.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/24-populate-venture-config-virgincasino.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/25-populate-venture-config-tropicana.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/26-update-community-urls.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/27-populate-venture-config-virgincasino-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/28-populate-venture-config-tropicana-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/29-drop-broadcast-message-table.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/30-add-unload-empty-days-property.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/31-add-room-creation-restriction-legacy-clusters.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/32-add-room-creation-restriction-new-clusters.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/33-populate-venture-config-ballycasinonj-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/34-populate-venture-config-ballybetaz-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/35-populate-venture-config-ballybetny-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/36-populate-venture-config-ballybeton-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/37-populate-venture-config-ballybetin-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/38-populate-venture-config-ballybetpa-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/39-populate-venture-config-rainbowriches-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/40-populate-venture-config-rainbowriches-k8s-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/41-populate-venture-config-starspins-k8s-notifications.xml' relativeToChangelogFile='true'/>
+    <include file='changesets/42-populate-venture-config-monopolycasino-k8s-notifications.xml' relativeToChangelogFile='true'/>
+</databaseChangeLog>

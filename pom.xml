@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>unicorn-openfire-notifications</artifactId>
+    <version>2.98.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Unicorn Openfire Notifications Docker Container</name>
+    <description>Builds a Docker container for Openfire Notifications and associated Gamesys add-ons</description>
+
+    <parent>
+        <artifactId>unicorn-openfire-master-pom</artifactId>
+        <groupId>gamesys</groupId>
+        <version>1.21.0</version>
+    </parent>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.gamesys.co.uk/client-delivery-platform/unicorn-openfire-notifications.git</connection>
+        <developerConnection>scm:git:ssh://git@github.gamesys.co.uk/client-delivery-platform/unicorn-openfire-notifications.git</developerConnection>
+        <url>origin</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <unicorn-openfire-liquibase-migrator.version>1.2.0</unicorn-openfire-liquibase-migrator.version>
+        <unicorn-openfire-third-party-dependencies.version>1.13.0</unicorn-openfire-third-party-dependencies.version>
+        <unicorn-openfire-chat-token-auth-provider.version>3.16.0</unicorn-openfire-chat-token-auth-provider.version>
+        <unicorn-openfire-jwt-auth-provider.version>1.10.0</unicorn-openfire-jwt-auth-provider.version>
+        <unicorn-openfire-messaging-plugin.version>2.29.0</unicorn-openfire-messaging-plugin.version>
+        <unicorn-openfire-reporting-plugin.version>1.33.0</unicorn-openfire-reporting-plugin.version>
+        <log4j.version>2.17.1</log4j.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-liquibase-migrator</artifactId>
+            <version>${unicorn-openfire-liquibase-migrator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-third-party-dependencies</artifactId>
+            <version>${unicorn-openfire-third-party-dependencies.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-chat-token-auth-provider</artifactId>
+            <version>${unicorn-openfire-chat-token-auth-provider.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-jwt-auth-provider</artifactId>
+            <version>${unicorn-openfire-jwt-auth-provider.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-messaging-plugin</artifactId>
+            <version>${unicorn-openfire-messaging-plugin.version}</version>
+        </dependency>
+
+       <dependency>
+            <groupId>gamesys.unicorn.openfire</groupId>
+            <artifactId>unicorn-openfire-reporting-plugin</artifactId>
+            <version>${unicorn-openfire-reporting-plugin.version}</version>
+        </dependency>
+
+
+        <!-- Override Log4J JARs in Openfire with a version patches the Log4j-Shell exploit -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-build-information</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <imageName>gamesys-ps-unicorn-docker-build.artifactory.gamesys.co.uk/${project.artifactId}:${project.version}</imageName>
+
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+
+                    <serverId>gamesys-unicorn-docker-registry</serverId>
+                    <registryUrl>https://gamesys-unicorn-docker-repositories.artifactory.gamesys.co.uk</registryUrl>
+
+                    <resources>
+                        <resource>
+                            <directory>src/main/yum</directory>
+                            <targetPath>/yum</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>src/main/bin</directory>
+                            <targetPath>/bin</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>src/main/lib</directory>
+                            <targetPath>/lib</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>src/main/conf</directory>
+                            <targetPath>/conf</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>src/main/database</directory>
+                            <targetPath>/database</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>target</directory>
+                            <include>*.jar</include>
+                            <include>*.json</include>
+                            <targetPath>/</targetPath>
+                        </resource>
+                    </resources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

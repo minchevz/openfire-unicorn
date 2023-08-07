@@ -1,0 +1,30 @@
+format_version: 10
+pipelines:
+  unicorn-openfire-reporting-plugin:
+    group: Unicorn-Openfire-Notifications-Release
+    template: maven-release-module
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    secure_variables:
+      ARTIFACTORY_USERNAME: AES:5/WDM/S3yXqZeIIvHsCehw==:S31sa0I9I7rDXC1JiIjGsnzo+5hGXcmqhls1uEqgm4Q=
+      ARTIFACTORY_PASSWORD: AES:oPmZj6MxIS9803XQ1RAwTw==:ttyvhCtNDXnL9hGPiDVPli2y8vfz7hQxb3EcehMIALJweWpfSuxTm8cCxMsycjXmqy5jFtQFeVh66LWs94R0RQ==
+    materials:
+      git-3e86aaf:
+        git: git@github.gamesys.co.uk:client-delivery-platform/unicorn-openfire-reporting-plugin.git
+        username: ''
+        shallow_clone: true
+        auto_update: true
+        branch: master
+        ignore:
+          - pom.xml
+        destination: openfire
+      tools:
+        git: git@github.gamesys.co.uk:client-delivery-platform/unicorn-openfire-notifications.git
+        username: ''
+        includes:
+        - ci-tools/*
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        destination: tools

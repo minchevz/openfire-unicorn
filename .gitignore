@@ -1,0 +1,25 @@
+# IntelliJ Files
+/.idea
+/*.iml
+/*.ipr
+/*.iws
+
+# Netbeans Files
+nb-configuration.xml
+nbactions.xml
+nbactions-stest.xml
+
+# Eclipse Files
+/.settings
+.classpath
+.project
+
+# VS Code
+/.vscode
+
+# General Files
+/target
+dependency-reduced-pom.xml
+MANIFEST.MF
+*.retry
+.DS_Store

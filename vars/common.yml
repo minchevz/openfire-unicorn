@@ -1,0 +1,74 @@
+---
+env_name: "{{ deploy_env }}"
+app_name: "openfire-notifications-{{ inventory_hostname }}"
+app_image_name: unicorn-openfire-notifications
+app_selector_label: "{{ app_name }}-app"
+app_log_path_override: "/opt/openfire/logs/*.log"
+splunk_source_type: "k8s.{{ env_name }}"
+splunk_source_name_overwrite: 'logpath'
+service_port: 7070
+kubes_suffix: ''
+k8s_maxSurge: 1
+k8s_maxUnavailable: 1
+internal_domain: "{{ lookup('community.hashi_vault.hashi_vault','secret={{ hcv_excite_configuration_path }}/internal_domain:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}')}}"
+
+liveness_probe_path: /
+liveness_probe_port: 7070
+liveness_probe_initial_delay_seconds: 15
+liveness_probe_period_seconds: 120
+liveness_probe_timeout_seconds: 120
+liveness_probe_failure_threshold: 3
+
+readiness_probe_path: /
+readiness_probe_port: 7070
+readiness_probe_initial_delay_seconds: 15
+readiness_probe_period_seconds: 120
+readiness_probe_timeout_seconds: 240
+readiness_probe_failure_threshold: 3
+
+# added annotations variables for logging
+outcold: true
+outcold_index: 'unicorn'
+
+# Excite - Software Components for unicorn-app/services
+insight_asset_key: 'GSYS-2050'
+
+# App Specific Config
+app_resources:
+  resources:
+    limits:
+      memory: "3000Mi"
+    requests:
+      memory: "2000Mi"
+
+# configmap
+common_configmap:
+  APP_VERSION: "{{ app_version }}"
+  LOG_ROOT: /opt/openfire/logs
+  DB_HOST: "jdbc:mysql://openfire-{{ venture_suffix }}-notifications-db.{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/unicorn_webapp_ingress_host:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') }}:3306/openfire_{{ venture_suffix }}_notifications"
+  EXTRA_OPENFIRE_OPTS: '-Ddynatrace_process_group={{ venture }}-notifications'
+  DT_CUSTOM_PROP: 'DYNATRACE_PG_METADATA_NAME={{ venture }}-notifications'
+  METASPACE_SIZE: '128M'
+  DIRECTMEM_SIZE: '256M'
+  JWT_PUBLIC_KEYS: 'rgp: MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEfgkbr6FvOiOvcmKr+zKgnSvxitykxlLJaCfW5rW6vubHNKuzdc+JXM0M/sqs4rjvc2AvdMMwBbQ4+DtL/pWZFzFHfuk+kOJo5QS3hB7DU7659/WnXUVdlR/uP+7cnGqk'
+
+services:
+  - port: 7070
+    targetPort: 7070
+    protocol: TCP
+    name: port-7070-tcp
+
+common_secrets:
+  DB_USERNAME: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/sensitive_openfire_notifications_database_username:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') | b64encode }}"
+  DB_PASSWORD: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/sensitive_openfire_notifications_database_password:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') | b64encode }}"
+  AUTH_KEY: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/sensitive_openfire_notifications_auth_key:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') | b64encode }}"
+  JWT_ISSUER_PRIVATE_KEYS: "{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/sensitive_openfire_notifications_jwt_issuer_private_keys:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') | b64encode }}"
+
+ingress:
+  host : "{{ venture }}-{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/openfire_notification_host_suffix:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') }},{{ venture }}-{{ lookup('community.hashi_vault.hashi_vault', 'secret={{ hcv_excite_configuration_path }}/openfire_legacy_notification_host_suffix:value auth_method=approle role_id={{ vault_role_id }} secret_id={{ vault_secret_id }} url={{ vault_addr }}') }}"
+  path: /
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"

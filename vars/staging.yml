@@ -1,0 +1,81 @@
+---
+environ_type: 'staging'
+artifactory_repo: "gamesys-unicorn-docker-repositories-virtual.artifactory.gamesys.co.uk"
+
+k8s_replicas: 1
+k8s_maxSurge: 1
+k8s_maxUnavailable: 0
+
+configmap:
+  LIQUIBASE_CONTEXTS: "pp,{{ liquibase_contexts }}-notifications"
+
+all:
+  vars:
+    ansible_user: ansible
+  children:
+    all_EU:
+      hosts:
+        botemania:
+          venture_suffix: btm
+          venture: botemania
+          liquibase_contexts: botemania
+        jackpotjoy:
+          venture_suffix: jpj
+          venture: jackpotjoy
+          liquibase_contexts: jackpotjoy
+        heart:
+          venture_suffix: hrt
+          venture: doublebubblebingo
+          liquibase_contexts: heart
+        starspins:
+          venture_suffix: sts
+          venture: starspins
+          liquibase_contexts: starspins
+        monopolycasino:
+          venture_suffix: mca
+          venture: monopolycasino
+          liquibase_contexts: monopolycasino
+        monopolycasinospain:
+          venture_suffix: mcs
+          venture: monopolycasinospain
+          liquibase_contexts: monopolycasinospain
+        rainbowriches:
+          venture_suffix: rrc
+          venture: rainbowriches
+          liquibase_contexts: rainbowriches
+        virgingames:
+          venture_suffix: vrg
+          venture: virgingames
+          liquibase_contexts: virgingames
+    all_PP21:
+      hosts:
+        ballybeton:
+          venture_suffix: bon
+          venture: ballybeton
+          liquibase_contexts: ballybeton
+        ballycasinonj:
+          venture_suffix: bnj
+          venture: ballycasinonj
+          liquibase_contexts: ballycasinonj
+        virgincasino:
+          venture_suffix: vgc
+          venture: virgincasino
+          liquibase_contexts: virgincasino
+        ballybetpa:
+          venture_suffix: bpa
+          venture: ballycasinopa
+          liquibase_contexts: ballybetpa
+    all_PP22:
+      hosts:
+        ballybetaz:
+          venture_suffix: baz
+          venture: ballybetaz
+          liquibase_contexts: ballybetaz
+        ballybetin:
+          venture_suffix: bin
+          venture: ballybetin
+          liquibase_contexts: ballybetin
+        ballybetny:
+          venture_suffix: bny
+          venture: ballybetny
+          liquibase_contexts: ballybetny

@@ -1,0 +1,24 @@
+format_version: 10
+pipelines:
+  unicorn-openfire-chat-token-auth-provider-snapshot:
+    group: Unicorn-Openfire-Notifications-Snapshot
+    template: maven-snapshot-module
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    secure_variables:
+      ARTIFACTORY_USERNAME: AES:KMMHEAAQiuXC+Uq/uz64tQ==:E2x8KZhKDfYV9qXpqYV/hl+4Ed44dYjCfpI5iCHgJqs=
+      ARTIFACTORY_PASSWORD: AES:/7d0flazPw5t4OOUGISWZQ==:enhTbgTjSoHPKZXlqws5LMXZW+KmHU8BryIm4kri3mby1UQdhv+Q1lVHeAlI2LjKv4GswM5puUrc3xpJVwyhWA==
+    materials:
+      unicorn-openfire-chat-token-auth-provider-snapshot-scm:
+        scm: c85adcb1-dd5a-40d3-ada7-274588845210
+        destination: openfire
+      tools:
+        git: git@github.gamesys.co.uk:client-delivery-platform/unicorn-openfire-notifications.git
+        username: ''
+        includes:
+        - ci-tools/*
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        destination: tools

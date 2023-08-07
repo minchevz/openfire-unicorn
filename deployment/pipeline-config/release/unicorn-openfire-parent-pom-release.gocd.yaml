@@ -1,0 +1,30 @@
+format_version: 10
+pipelines:
+  unicorn-openfire-parent-pom:
+    group: Unicorn-Openfire-Notifications-Release
+    template: maven-release-pom
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    secure_variables:
+      ARTIFACTORY_USERNAME: AES:aPO62lFjZkm8pmmGsp0dvw==:ORVHqPUpN1gyiceACeaFqcLmuLuTGYqdyC/1Sb/Gzbc=
+      ARTIFACTORY_PASSWORD: AES:qs6mIvRIy/oJ+Jr1klBuNQ==:N2qeyCdxHWF0K8gkSOI1zsR3h34vGFNizPYTXWfw+78LX1PspgkhoUjadlIQWM5Qkb9nTV/Uk57UtJHCh9o8/g==
+    materials:
+      git-7126f86:
+        git: https://github.gamesys.co.uk/PlayerServices/unicorn-openfire-parent-pom.git
+        username: sys-clientdel-github
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        ignore:
+          - pom.xml
+        destination: openfire
+        encrypted_password: AES:7zlmigkANLF66eHf9nDY/A==:F6PsW2KUUNKWNmIcwsPSivGjSJMQCZnJJ2qZ4lsoies=
+      tools:
+        git: git@github.gamesys.co.uk:client-delivery-platform/unicorn-openfire-notifications.git
+        includes:
+        - ci-tools/*
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        destination: tools

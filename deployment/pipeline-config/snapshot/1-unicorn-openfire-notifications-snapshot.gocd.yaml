@@ -1,0 +1,25 @@
+format_version: 10
+pipelines:
+  unicorn-openfire-notifications-snapshot:
+    group: Unicorn-Openfire-Notifications-Snapshot
+    template: maven-snapshot-deployable
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    environment_variables:
+      APP_NAME: Openfire Notifications
+      VERSION_KEY: docker_openfire_version
+      DEPLOY_VENTURE: monopolycasino
+      DEPLOY_ENV: int03
+      TOWER_USERNAME: PlayerServices-Unicorn-Provisioner
+      TOWER_INT_HOST: controlcentre.int90.integration.pgt.gaia
+      TOWER_STG_HOST: controlcentre.stg.pgt.gamesysgames.com
+      JAVA_HOME: /etc/alternatives/java_sdk_11
+    secure_variables:
+      ARTIFACTORY_USERNAME: AES:5/WDM/S3yXqZeIIvHsCehw==:S31sa0I9I7rDXC1JiIjGsnzo+5hGXcmqhls1uEqgm4Q=
+      ARTIFACTORY_PASSWORD: AES:oPmZj6MxIS9803XQ1RAwTw==:ttyvhCtNDXnL9hGPiDVPli2y8vfz7hQxb3EcehMIALJweWpfSuxTm8cCxMsycjXmqy5jFtQFeVh66LWs94R0RQ==
+      TOWER_INT_PASSWORD: AES:kBNfKi32T3L8jVn0ezKnbQ==:mMBPe7NPC9TvwRlJ6JdZ0MgJ4AVAV5O2Q7ZJZ3flP8w=
+      TOWER_STG_PASSWORD: AES:p8nJMUBn8lv29Zd6X0dtbg==:S5IPdE2T4BeSuJk8u8iwRbGlVPLn+p+lBNOeSiuGpC0=
+    materials:
+      unicorn-openfire-notifications-snapshot-scm:
+        scm: 7e4c97d4-6e3b-4abf-acd7-4fa3ceba273b

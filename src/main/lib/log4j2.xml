@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration monitorInterval="30">
+    <Appenders>
+        <RollingFile name="debug-out" fileName="${sys:openfireHome}/logs/debug.log" filePattern="${sys:openfireHome}/logs/debug.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %l : %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="DEBUG"/>
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="info-out" fileName="${sys:openfireHome}/logs/info.log" filePattern="${sys:openfireHome}/logs/info.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %l : %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+                <ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="warn-out" fileName="${sys:openfireHome}/logs/warn.log" filePattern="${sys:openfireHome}/logs/warn.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %l : %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="WARN"/>
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="error-out" fileName="${sys:openfireHome}/logs/error.log" filePattern="${sys:openfireHome}/logs/error.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p --- [%15.15t] %l : %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="ERROR"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="chat-messages-out" fileName="${sys:openfireHome}/logs/chatmessages.log" filePattern="${sys:openfireHome}/logs/chatmessages.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="room-snapshots-out" fileName="${sys:openfireHome}/logs/roomsnapshots.log" filePattern="${sys:openfireHome}/logs/roomsnapshots.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="events-out" fileName="${sys:openfireHome}/logs/events.log" filePattern="${sys:openfireHome}/logs/events.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+        </RollingFile>
+
+        <RollingFile name="media-events-out" fileName="${sys:openfireHome}/logs/media-events.log" filePattern="${sys:openfireHome}/logs/media-events.log-%i">
+            <PatternLayout charset="UTF-8">
+                <Pattern>%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="log_size"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3" />
+            <Filters>
+                <ThresholdFilter level="INFO"/>
+            </Filters>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <!-- OF-506: Jetty INFO messages are generally not useful. Ignore them by default. -->
+        <Logger name="org.eclipse.jetty" level="warn"/>
+
+        <Logger name="chat-messages-logger" level="info" additivity="false">
+            <AppenderRef ref="chat-messages-out"/>
+        </Logger>
+        <Logger name="room-snapshots-logger" level="info" additivity="false">
+            <AppenderRef ref="room-snapshots-out"/>
+        </Logger>
+
+        <Logger name="events-logger" level="info" additivity="false">
+            <AppenderRef ref="events-out"/>
+        </Logger>
+
+        <Logger name="media-event-logger" level="info" additivity="false">
+            <AppenderRef ref="media-events-out"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="debug-out"/>
+            <AppenderRef ref="info-out"/>
+            <AppenderRef ref="warn-out"/>
+            <AppenderRef ref="error-out"/>
+        </Root>
+    </Loggers>
+</Configuration>

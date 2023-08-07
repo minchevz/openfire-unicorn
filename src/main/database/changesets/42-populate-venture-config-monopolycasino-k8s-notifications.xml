@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <changeSet id='42' author='saivarun'  context='(integration OR pp OR live) AND monopolycasino-notifications'>
+        <update tableName="ofProperty">
+            <column name="propValue" value="jms:queue:monopolycasino.chat.notification"/>
+            <where>name='gamesys.messaging.jms.uri'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

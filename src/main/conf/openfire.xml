@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jive>
+    <adminConsole>
+        <!-- Disable either port by setting the value to -1 -->
+        <port>9090</port>
+        <securePort>9091</securePort>
+    </adminConsole>
+    <locale>en</locale>
+    <!-- XEP-0198 properties -->
+    <stream>
+        <management>
+            <!-- Whether stream management is offered to clients by server. -->
+            <active>true</active>
+            <!-- Number of stanzas sent to client before a stream management
+                 acknowledgement request is made. -->
+            <requestFrequency>5</requestFrequency>
+        </management>
+    </stream>
+    <connectionProvider>
+        <className>org.jivesoftware.database.DefaultConnectionProvider</className>
+    </connectionProvider>
+    <database>
+        <defaultProvider>
+            <driver>com.mysql.cj.jdbc.Driver</driver>
+            <username>db_username</username>
+            <password>db_password</password>
+            <serverURL>db_host?rewriteBatchedStatements=true&amp;useUnicode=true</serverURL>
+            <testSQL>select 1</testSQL>
+            <testBeforeUse>false</testBeforeUse>
+            <testAfterUse>false</testAfterUse>
+            <minConnections>5</minConnections>
+            <maxConnections>50</maxConnections>
+            <connectionTimeout>1.0</connectionTimeout>
+        </defaultProvider>
+    </database>
+    <setup>true</setup>
+    <clustering>
+        <enabled>true</enabled>
+    </clustering>
+</jive>

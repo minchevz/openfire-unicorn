@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd'>
+
+    <changeSet id='26' author='Michael Andrews' context='(pp OR live) AND (virgincasino OR tropicana)'>
+        <update tableName="ofProperty">
+            <column name="propValue" value="http://community-server/community"/>
+            <where>name='community.server.url'</where>
+        </update>
+        <update tableName="ofProperty">
+            <column name="propValue" value="http://community-server/media-api"/>
+            <where>name='media.game.service.url'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>
